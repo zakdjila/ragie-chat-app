@@ -49,9 +49,20 @@
 
 .loading {
   text-align: center;
-  padding: 40px;
+  padding: 60px 40px;
   color: #888;
   font-size: 1.1rem;
+}
+
+.loading-spinner {
+  font-size: 3rem;
+  animation: spin 2s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .empty-state {

@@ -38,7 +38,9 @@ function DocumentList({ refresh }) {
         setDocuments([]);
       }
     } catch (err) {
-      setError(err.response?.data?.error || 'Failed to load documents');
+      console.error('Error fetching documents:', err);
+      const errorMessage = err.response?.data?.error || err.message || 'Failed to load documents';
+      setError(`${errorMessage}${err.code === 'ERR_NETWORK' ? ' - Backend server not reachable' : ''}`);
       setDocuments([]);
     } finally {
       setLoading(false);
@@ -98,7 +100,10 @@ function DocumentList({ refresh }) {
     return (
       <div className="document-list">
         <h2>Documents</h2>
-        <div className="loading">Loading documents...</div>
+        <div className="loading">
+          <div className="loading-spinner">⏳</div>
+          <p>Loading documents...</p>
+        </div>
       </div>
     );
   }
