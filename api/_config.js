@@ -1,6 +1,6 @@
 // Shared configuration for all API routes
-export const RAGIE_API_KEY = process.env.RAGIE_API_KEY;
-export const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+export const RAGIE_API_KEY = process.env.RAGIE_API_KEY?.trim();
+export const OPENAI_API_KEY = process.env.OPENAI_API_KEY?.trim();
 export const RAGIE_API_BASE = 'https://api.ragie.ai';
 
 // CORS headers

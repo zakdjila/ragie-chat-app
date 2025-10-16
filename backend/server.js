@@ -16,8 +16,8 @@ dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const RAGIE_API_KEY = process.env.RAGIE_API_KEY;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const RAGIE_API_KEY = process.env.RAGIE_API_KEY?.trim();
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY?.trim();
 const RAGIE_API_BASE = 'https://api.ragie.ai';
 
 // Initialize OpenAI client
