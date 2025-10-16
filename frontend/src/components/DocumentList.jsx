@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import './DocumentList.css';
 
 function DocumentList({ refresh }) {
@@ -23,7 +24,7 @@ function DocumentList({ refresh }) {
       const params = {};
       if (partition) params.partition = partition;
 
-      const response = await axios.get('/api/documents', { params });
+      const response = await axios.get(`${API_BASE_URL}/api/documents`, { params });
       const data = response.data;
 
       // Handle different response formats
@@ -48,7 +49,7 @@ function DocumentList({ refresh }) {
     if (!confirm('Are you sure you want to delete this document?')) return;
 
     try {
-      await axios.delete(`/api/documents/${id}`);
+      await axios.delete(`${API_BASE_URL}/api/documents/${id}`);
       setDocuments(documents.filter(doc => doc.id !== id));
       if (selectedDoc?.id === id) setSelectedDoc(null);
     } catch (err) {
@@ -64,7 +65,7 @@ function DocumentList({ refresh }) {
   const viewChunks = async (docId) => {
     setLoadingChunks(true);
     try {
-      const response = await axios.get(`/api/documents/${docId}/chunks`);
+      const response = await axios.get(`${API_BASE_URL}/api/documents/${docId}/chunks`);
       setChunks(response.data);
     } catch (err) {
       alert(err.response?.data?.error || 'Failed to load chunks');

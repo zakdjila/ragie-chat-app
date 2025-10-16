@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server.js"
+    }
+  ],
+  "env": {
+    "RAGIE_API_KEY": "@ragie_api_key",
+    "OPENAI_API_KEY": "@openai_api_key"
+  }
+}

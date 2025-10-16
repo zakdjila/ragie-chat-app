@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import './FileUpload.css';
 
 function FileUpload({ onUploadSuccess }) {
@@ -101,7 +102,7 @@ function FileUpload({ onUploadSuccess }) {
         formData.append('metadata', JSON.stringify(metadataObj));
       }
 
-      const response = await axios.post('/api/documents/upload', formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/documents/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

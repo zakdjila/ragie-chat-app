@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import './Chat.css';
 
 function Chat() {
@@ -69,7 +70,7 @@ function Chat() {
         payload.model = model;
         if (systemPrompt) payload.system_prompt = systemPrompt;
 
-        response = await axios.post('/api/chat', payload);
+        response = await axios.post(`${API_BASE_URL}/api/chat`, payload);
 
         assistantMessage = {
           id: Date.now() + 1,
@@ -81,7 +82,7 @@ function Chat() {
         };
       } else {
         // Raw retrieval mode
-        response = await axios.post('/api/retrievals', payload);
+        response = await axios.post(`${API_BASE_URL}/api/retrievals`, payload);
 
         assistantMessage = {
           id: Date.now() + 1,
